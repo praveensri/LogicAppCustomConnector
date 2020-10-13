@@ -42,7 +42,8 @@ In case the custom connector does not have any trigger and only actions are requ
     }
 
 In case the custom connector consists of trigger only or trigger with other actions, we need to implement the following interface.
-     /// <summary>
+    
+    /// <summary>
     /// Service operations trigger provider extension.
     /// </summary>
     public interface IServiceOperationsTriggerProvider : IServiceOperationsProvider
@@ -55,6 +56,7 @@ In case the custom connector consists of trigger only or trigger with other acti
 
 Function Extensions and registration:
 •	Create Startup job: To register the custom connector as function extension , you need to create a startup class using [assembly:WebJobsStartup] assembly attribute and implementing IWebJobsStartup interface, refer the function registration for more details. In the configure method you need to register the extension and inject the custom service provider as shown below:
+
     public class CosmosDbTriggerStartup : IWebJobsStartup
     {
         public void Configure(IWebJobsBuilder builder)
@@ -67,15 +69,18 @@ Function Extensions and registration:
         }
     } 
 •	Register service provider:  We need to register the service provider implementation as function extension. We are using the built-in Azure function trigger Cosmos DB Trigger  here in this example we register the new Cosmos DB service provider to existing list of service providers which are already part of Logic App V2 extension.
-[Extension("CosmosDbServiceProvider", configurationSection: "CosmosDbServiceProvider")]
-public class CosmosDbServiceProvider : IExtensionConfigProvider
-{
+
+
+    [Extension("CosmosDbServiceProvider", configurationSection: "CosmosDbServiceProvider")]
+    public class CosmosDbServiceProvider : IExtensionConfigProvider
+    {        
+
         public CosmosDbServiceProvider(ServiceOperationsProvider serviceOperationsProvider,
             CosmosDbTriggerServiceOperationProvider operationsProvider)
         {
             serviceOperationsProvider.RegisterService(ServiceName, ServiceId, operationsProvider);
         }
-
+        
         public void Initialize(ExtensionConfigContext context)
         {
             // Converts Cosmos Document list to JObject array.
@@ -92,7 +97,9 @@ public class CosmosDbServiceProvider : IExtensionConfigProvider
             return jobjects.ToArray();
         }
     }
+    
 •	Add Converter: Logic app V2 has implemented the generic way to handle any trigger using the JObject array, we need to add a converter to convert the read only list of Azure Cosmos DB document into JObject array. Once the converter is ready as shown in above example, we need to register the convert as part of ExtensionConfigContext.
-// Converts Cosmos Document list to JObject array.
-context.AddConverter<IReadOnlyList<Document>, JObject[]>(ConvertDocumentToJObject);
+
+    // Converts Cosmos Document list to JObject array.
+    context.AddConverter<IReadOnlyList<Document>, JObject[]>(ConvertDocumentToJObject);
 
