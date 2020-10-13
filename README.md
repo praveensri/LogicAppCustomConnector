@@ -1,4 +1,4 @@
-# LogicAppCustomConnector
+# Logic App built-in custom connector
 Azure Logic App Custom Built in connectors
 Creating Custom Built-in connector for Logic App V2
 The extension model of service provider connector for Logic App V2 enables you to add the custom connector without any changes in extension or logic app designer. This blog describes how to create the built-in connectors.  
