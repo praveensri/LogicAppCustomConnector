@@ -1,0 +1,306 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "name": "Twilio",
+            "location": null,
+            "id": "/serviceProviders/twilio",
+            "type": "/serviceProviders/apis",
+            "properties": {
+                "displayName": "Twilio",
+                "brandColor": "0xC4D5FF",
+                "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1370/1.0.1370.2069/twilio/icon.png",
+                "serviceUrl": "https://api.twilio.com/2010-04-01/Accounts/{{sid}}",
+                "authorizationFormat": "{{sid}}:{{token}}",
+                "authorizationType": "Basic",
+                "apiCapability": [
+                    "actions"
+                ],
+                "connectionParameters": {
+                    "connectionString": null,
+                    "ConnectionParameter": {
+                        "sid": {
+                            "type": "securestring",
+                            "parameterSource": "AppConfiguration",
+                            "uiDefinition": {
+                                "displayName": "Twilio Account Id",
+                                "description": "Twilio Account Id",
+                                "constraints": {
+                                    "required": true
+                                }
+                            }
+                        },
+                        "token": {
+                            "type": "securestring",
+                            "parameterSource": "AppConfiguration",
+                            "uiDefinition": {
+                                "displayName": "Twilio Access Token",
+                                "description": "Twilio Access Token",
+                                "constraints": {
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "required": [
+        "name",
+        "location",
+        "id",
+        "type",
+        "properties"
+    ],
+    "properties": {
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Twilio"
+            ]
+        },
+        "location": {
+            "$id": "#/properties/location",
+            "type": "null",
+            "title": "The location schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null
+            ]
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "title": "The id schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "/serviceProviders/twilio"
+            ]
+        },
+        "type": {
+            "$id": "#/properties/type",
+            "type": "string",
+            "title": "The type schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "/serviceProviders/apis"
+            ]
+        },
+        "properties": {
+            "$id": "#/properties/properties",
+            "type": "object",
+            "title": "The properties schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "displayName": "Twilio",
+                    "brandColor": "0xC4D5FF",
+                    "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1370/1.0.1370.2069/twilio/icon.png",
+                    "serviceUrl": "https://api.twilio.com/2010-04-01/Accounts/{{sid}}",
+                    "authorizationFormat": "{{sid}}:{{token}}",
+                    "authorizationType": "Basic",
+                    "apiCapability": [
+                        "actions"
+                    ],
+                    "connectionParameters": {
+                        "connectionString": null,
+                        "ConnectionParameter": {
+                            "sid": {
+                                "type": "securestring",
+                                "parameterSource": "AppConfiguration",
+                                "uiDefinition": {
+                                    "displayName": "Twilio Account Id",
+                                    "description": "Twilio Account Id",
+                                    "constraints": {
+                                        "required": true
+                                    }
+                                }
+                            },
+                            "token": {
+                                "type": "securestring",
+                                "parameterSource": "AppConfiguration",
+                                "uiDefinition": {
+                                    "displayName": "Twilio Access Token",
+                                    "description": "Twilio Access Token",
+                                    "constraints": {
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "required": [
+                "displayName",
+                "brandColor",
+                "iconUri",
+                "serviceUrl",
+                "authorizationFormat",
+                "authorizationType",
+                "apiCapability",
+                "connectionParameters"
+            ],
+            "properties": {
+                "displayName": {
+                    "$id": "#/properties/properties/properties/displayName",
+                    "type": "string",
+                    "title": "The displayName schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "Twilio"
+                    ]
+                },
+                "brandColor": {
+                    "$id": "#/properties/properties/properties/brandColor",
+                    "type": "string",
+                    "title": "The brandColor schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "0xC4D5FF"
+                    ]
+                },
+                "iconUri": {
+                    "$id": "#/properties/properties/properties/iconUri",
+                    "type": "string",
+                    "title": "The iconUri schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://connectoricons-prod.azureedge.net/releases/v1.0.1370/1.0.1370.2069/twilio/icon.png"
+                    ]
+                },
+                "serviceUrl": {
+                    "$id": "#/properties/properties/properties/serviceUrl",
+                    "type": "string",
+                    "title": "The serviceUrl schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "https://api.twilio.com/2010-04-01/Accounts/{{sid}}"
+                    ]
+                },
+                "apiCapability": {
+                    "$id": "#/properties/properties/properties/apiCapability",
+                    "type": "array",
+                    "title": "The apiCapability schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "actions"
+                        ]
+                    ],
+                    "additionalItems": true
+                },
+                "connectionParameters": {
+                    "$id": "#/properties/properties/properties/connectionParameters",
+                    "type": "object",
+                    "title": "The connectionParameters schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "connectionString": null,
+                            "ConnectionParameter": {
+                                "sid": {
+                                    "type": "securestring",
+                                    "parameterSource": "AppConfiguration",
+                                    "uiDefinition": {
+                                        "displayName": "Twilio Account Id",
+                                        "description": "Twilio Account Id",
+                                        "constraints": {
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "token": {
+                                    "type": "securestring",
+                                    "parameterSource": "AppConfiguration",
+                                    "uiDefinition": {
+                                        "displayName": "Twilio Access Token",
+                                        "description": "Twilio Access Token",
+                                        "constraints": {
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "required": [
+                        "connectionString",
+                        "ConnectionParameter"
+                    ],
+                    "properties": {
+                        "connectionString": {
+                            "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString",
+                            "type": "null",
+                            "title": "The connectionString schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": null,
+                            "examples": [
+                                null
+                            ]
+                        },
+                        "ConnectionParameter": {
+                            "default": {},
+                            "description": "An explanation about the purpose of this instance.",
+                            "examples": [
+                                {
+                                    "sid": {
+                                        "type": "securestring",
+                                        "parameterSource": "AppConfiguration",
+                                        "uiDefinition": {
+                                            "displayName": "Twilio Account Id",
+                                            "description": "Twilio Account Id",
+                                            "constraints": {
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "token": {
+                                        "type": "securestring",
+                                        "parameterSource": "AppConfiguration",
+                                        "uiDefinition": {
+                                            "displayName": "Twilio Access Token",
+                                            "description": "Twilio Access Token",
+                                            "constraints": {
+                                                "required": true
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "sid",
+                                "token"
+                            ],
+                            "title": "The ConnectionParameter schema",
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}
