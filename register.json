@@ -22,7 +22,17 @@
                     "actions"
                 ],
                 "connectionParameters": {
-                    "connectionString": null,
+                    "connectionString": {
+                        "type": "securestring",
+                        "parametersource": "AppConfiguration",
+                        "uiDefinition": {
+                            "displayName": "Cosmos DB connection string",
+                            "description": "Cosmos DB connection string",
+                            "constraints": {
+                                "required": true
+                            }
+                        }
+                    },
                     "ConnectionParameter": {
                         "sid": {
                             "type": "securestring",
@@ -117,7 +127,17 @@
                         "actions"
                     ],
                     "connectionParameters": {
-                        "connectionString": null,
+                        "connectionString": {
+                            "type": "securestring",
+                            "parametersource": "AppConfiguration",
+                            "uiDefinition": {
+                                "displayName": "Cosmos DB connection string",
+                                "description": "Cosmos DB connection string",
+                                "constraints": {
+                                    "required": true
+                                }
+                            }
+                        },
                         "ConnectionParameter": {
                             "sid": {
                                 "type": "securestring",
@@ -150,8 +170,6 @@
                 "brandColor",
                 "iconUri",
                 "serviceUrl",
-                "authorizationFormat",
-                "authorizationType",
                 "apiCapability",
                 "connectionParameters"
             ],
@@ -187,13 +205,31 @@
                     ]
                 },
                 "serviceUrl": {
-                    "$id": "#/properties/properties/properties/serviceUrl",
+                    "default": "",
+                    "description": "An explanation about the purpose of this instance.",
+                    "examples": [
+                        "https://api.twilio.com/2010-04-01/Accounts/{{sid}}"
+                    ],
+                    "title": "The serviceUrl schema"
+                },
+                "authorizationFormat": {
+                    "$id": "#/properties/properties/properties/authorizationFormat",
                     "type": "string",
-                    "title": "The serviceUrl schema",
+                    "title": "The authorizationFormat schema",
                     "description": "An explanation about the purpose of this instance.",
                     "default": "",
                     "examples": [
-                        "https://api.twilio.com/2010-04-01/Accounts/{{sid}}"
+                        "{{sid}}:{{token}}"
+                    ]
+                },
+                "authorizationType": {
+                    "$id": "#/properties/properties/properties/authorizationType",
+                    "type": "string",
+                    "title": "The authorizationType schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "Basic"
                     ]
                 },
                 "apiCapability": {
@@ -207,7 +243,22 @@
                             "actions"
                         ]
                     ],
-                    "additionalItems": true
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/properties/properties/apiCapability/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/properties/properties/apiCapability/items/anyOf/0",
+                                "type": "string",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "actions"
+                                ]
+                            }
+                        ]
+                    }
                 },
                 "connectionParameters": {
                     "$id": "#/properties/properties/properties/connectionParameters",
@@ -217,7 +268,17 @@
                     "default": {},
                     "examples": [
                         {
-                            "connectionString": null,
+                            "connectionString": {
+                                "type": "securestring",
+                                "parametersource": "AppConfiguration",
+                                "uiDefinition": {
+                                    "displayName": "Cosmos DB connection string",
+                                    "description": "Cosmos DB connection string",
+                                    "constraints": {
+                                        "required": false
+                                    }
+                                }
+                            },
                             "ConnectionParameter": {
                                 "sid": {
                                     "type": "securestring",
@@ -226,7 +287,7 @@
                                         "displayName": "Twilio Account Id",
                                         "description": "Twilio Account Id",
                                         "constraints": {
-                                            "required": true
+                                            "required": false
                                         }
                                     }
                                 },
@@ -237,7 +298,7 @@
                                         "displayName": "Twilio Access Token",
                                         "description": "Twilio Access Token",
                                         "constraints": {
-                                            "required": true
+                                            "required": false
                                         }
                                     }
                                 }
@@ -245,23 +306,134 @@
                         }
                     ],
                     "required": [
-                        "connectionString",
-                        "ConnectionParameter"
                     ],
                     "properties": {
                         "connectionString": {
                             "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString",
-                            "type": "null",
+                            "type": "object",
                             "title": "The connectionString schema",
                             "description": "An explanation about the purpose of this instance.",
-                            "default": null,
+                            "default": {},
                             "examples": [
-                                null
-                            ]
+                                {
+                                    "type": "securestring",
+                                    "parametersource": "AppConfiguration",
+                                    "uiDefinition": {
+                                        "displayName": "Connectior connection string",
+                                        "description": "Connector connection string",
+                                        "constraints": {
+                                            "required": false
+                                        }
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "type",
+                                "parametersource",
+                                "uiDefinition"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/type",
+                                    "type": "string",
+                                    "title": "The type schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "securestring"
+                                    ]
+                                },
+                                "parametersource": {
+                                    "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/parametersource",
+                                    "type": "string",
+                                    "title": "The parametersource schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": "",
+                                    "examples": [
+                                        "AppConfiguration"
+                                    ]
+                                },
+                                "uiDefinition": {
+                                    "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/uiDefinition",
+                                    "type": "object",
+                                    "title": "The uiDefinition schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "displayName": "Cosmos DB connection string",
+                                            "description": "Cosmos DB connection string",
+                                            "constraints": {
+                                                "required": true
+                                            }
+                                        }
+                                    ],
+                                    "required": [
+                                        "displayName",
+                                        "description",
+                                        "constraints"
+                                    ],
+                                    "properties": {
+                                        "displayName": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/uiDefinition/properties/displayName",
+                                            "type": "string",
+                                            "title": "The displayName schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "Cosmos DB connection string"
+                                            ]
+                                        },
+                                        "description": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/uiDefinition/properties/description",
+                                            "type": "string",
+                                            "title": "The description schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "Cosmos DB connection string"
+                                            ]
+                                        },
+                                        "constraints": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/uiDefinition/properties/constraints",
+                                            "type": "object",
+                                            "title": "The constraints schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "required": true
+                                                }
+                                            ],
+                                            "required": [
+                                                "required"
+                                            ],
+                                            "properties": {
+                                                "required": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/connectionString/properties/uiDefinition/properties/constraints/properties/required",
+                                                    "type": "boolean",
+                                                    "title": "The required schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": false,
+                                                    "examples": [
+                                                        true
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            },
+                            "additionalProperties": true
                         },
                         "ConnectionParameter": {
-                            "default": {},
+                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter",
+                            "type": "object",
+                            "title": "The ConnectionParameter schema",
                             "description": "An explanation about the purpose of this instance.",
+                            "default": {},
                             "examples": [
                                 {
                                     "sid": {
@@ -292,7 +464,248 @@
                                 "sid",
                                 "token"
                             ],
-                            "title": "The ConnectionParameter schema",
+                            "properties": {
+                                "sid": {
+                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid",
+                                    "type": "object",
+                                    "title": "The sid schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "type": "securestring",
+                                            "parameterSource": "AppConfiguration",
+                                            "uiDefinition": {
+                                                "displayName": "Twilio Account Id",
+                                                "description": "Twilio Account Id",
+                                                "constraints": {
+                                                    "required": true
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "required": [
+                                        "type",
+                                        "parameterSource",
+                                        "uiDefinition"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/type",
+                                            "type": "string",
+                                            "title": "The type schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "securestring"
+                                            ]
+                                        },
+                                        "parameterSource": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/parameterSource",
+                                            "type": "string",
+                                            "title": "The parameterSource schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "AppConfiguration"
+                                            ]
+                                        },
+                                        "uiDefinition": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/uiDefinition",
+                                            "type": "object",
+                                            "title": "The uiDefinition schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "displayName": "Twilio Account Id",
+                                                    "description": "Twilio Account Id",
+                                                    "constraints": {
+                                                        "required": true
+                                                    }
+                                                }
+                                            ],
+                                            "required": [
+                                                "displayName",
+                                                "description",
+                                                "constraints"
+                                            ],
+                                            "properties": {
+                                                "displayName": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/uiDefinition/properties/displayName",
+                                                    "type": "string",
+                                                    "title": "The displayName schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Twilio Account Id"
+                                                    ]
+                                                },
+                                                "description": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/uiDefinition/properties/description",
+                                                    "type": "string",
+                                                    "title": "The description schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Twilio Account Id"
+                                                    ]
+                                                },
+                                                "constraints": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/uiDefinition/properties/constraints",
+                                                    "type": "object",
+                                                    "title": "The constraints schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "required": true
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "required"
+                                                    ],
+                                                    "properties": {
+                                                        "required": {
+                                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/sid/properties/uiDefinition/properties/constraints/properties/required",
+                                                            "type": "boolean",
+                                                            "title": "The required schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": false,
+                                                            "examples": [
+                                                                true
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                },
+                                "token": {
+                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token",
+                                    "type": "object",
+                                    "title": "The token schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "type": "securestring",
+                                            "parameterSource": "AppConfiguration",
+                                            "uiDefinition": {
+                                                "displayName": "Twilio Access Token",
+                                                "description": "Twilio Access Token",
+                                                "constraints": {
+                                                    "required": true
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "required": [
+                                        "type",
+                                        "parameterSource",
+                                        "uiDefinition"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/type",
+                                            "type": "string",
+                                            "title": "The type schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "securestring"
+                                            ]
+                                        },
+                                        "parameterSource": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/parameterSource",
+                                            "type": "string",
+                                            "title": "The parameterSource schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": "",
+                                            "examples": [
+                                                "AppConfiguration"
+                                            ]
+                                        },
+                                        "uiDefinition": {
+                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/uiDefinition",
+                                            "type": "object",
+                                            "title": "The uiDefinition schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "displayName": "Twilio Access Token",
+                                                    "description": "Twilio Access Token",
+                                                    "constraints": {
+                                                        "required": true
+                                                    }
+                                                }
+                                            ],
+                                            "required": [
+                                                "displayName",
+                                                "description",
+                                                "constraints"
+                                            ],
+                                            "properties": {
+                                                "displayName": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/uiDefinition/properties/displayName",
+                                                    "type": "string",
+                                                    "title": "The displayName schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Twilio Access Token"
+                                                    ]
+                                                },
+                                                "description": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/uiDefinition/properties/description",
+                                                    "type": "string",
+                                                    "title": "The description schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "Twilio Access Token"
+                                                    ]
+                                                },
+                                                "constraints": {
+                                                    "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/uiDefinition/properties/constraints",
+                                                    "type": "object",
+                                                    "title": "The constraints schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "required": true
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "required"
+                                                    ],
+                                                    "properties": {
+                                                        "required": {
+                                                            "$id": "#/properties/properties/properties/connectionParameters/properties/ConnectionParameter/properties/token/properties/uiDefinition/properties/constraints/properties/required",
+                                                            "type": "boolean",
+                                                            "title": "The required schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": false,
+                                                            "examples": [
+                                                                true
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            },
                             "additionalProperties": true
                         }
                     },
