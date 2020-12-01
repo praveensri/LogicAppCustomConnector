@@ -22,7 +22,7 @@ catch
 dotnet add package "Microsoft.Azure.Workflows.ServiceProvider.Extensions.CosmosDB" --version 1.0.0  --source $extensionPath
 
 write-host 'Full assembly '+ $fullAssemlyName
-$typeFullName =  "Microsoft.Azure.Workflows.ServiceProvider.Extensions.CosmosDB.CosmosDBStartup, $fullAssemlyName"
+$typeFullName =  "":  "ServiceProviders.CosmosDb.Extensions.CosmosDbTriggerStartup, $fullAssemlyName"
 
 $newNode =  [pscustomobject] @{ 
   name = $extensionNameServiceProvider
