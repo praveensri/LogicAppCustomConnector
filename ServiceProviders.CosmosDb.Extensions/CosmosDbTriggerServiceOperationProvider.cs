@@ -208,7 +208,7 @@ namespace ServiceProviders.CosmosDb.Extensions
                         BrandColor = 0xC4D5FF,
                         Description = "Connect to Azure Cosmos db to receive document.",
                         DisplayName = "Cosmos Db",
-                        IconUri = new Uri("https://github.com/praveensri/LogicAppCustomConnector/blob/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
+                        IconUri = new Uri("https://raw.githubusercontent.com/praveensri/LogicAppCustomConnector/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
                         Capabilities = new ApiCapability[] { ApiCapability.Triggers },
                         ConnectionParameters = new ConnectionParameters
                         {
@@ -235,7 +235,7 @@ namespace ServiceProviders.CosmosDb.Extensions
                 Visibility = Visibility.Important,
                 OperationType = OperationType.ServiceProvider,
                 BrandColor = 0x1C3A56,
-                IconUri = new Uri("https://github.com/praveensri/LogicAppCustomConnector/blob/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
+                IconUri = new Uri("https://raw.githubusercontent.com/praveensri/LogicAppCustomConnector/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
                 Trigger = TriggerType.Batch,
             },
         };
@@ -253,7 +253,7 @@ namespace ServiceProviders.CosmosDb.Extensions
                 BrandColor = 0xC4D5FF,
                 Description = "Connect to Azure Cosmos db to receive document.",
                 DisplayName = "Cosmos Db",
-                IconUri = new Uri("https://github.com/praveensri/LogicAppCustomConnector/blob/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
+                IconUri = new Uri("https://raw.githubusercontent.com/praveensri/LogicAppCustomConnector/main/ServiceProviders.CosmosDb.Extensions/icon.png"),
                 Capabilities = new ApiCapability[] { ApiCapability.Triggers },
                 ConnectionParameters = new ConnectionParameters
                 {
