@@ -11,7 +11,7 @@ $fullAssemlyName = [System.Reflection.AssemblyName]::GetAssemblyName($dll).FullN
 write-host "Full assembly name " + $fullAssemlyName
 try
 {
-# Kill all the existing func.exe else module extension cannot be modified. 
+# Kill the existing func.exe else module extension cannot be updated.
 taskkill /IM "func.exe" /F
 }
 catch
